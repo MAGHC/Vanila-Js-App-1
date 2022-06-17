@@ -34,13 +34,21 @@ function saveInfo(event)
     
 }
 
+let todos =[]
+
+function saveTodo(){
+    localStorage.setItem('todos',JSON.stringify(todos))
+}
+
 
 function handleSubmit(event){
     event.preventDefault()
     let newToDo = userInputTodo.value
     addTodo(newToDo)
     userInputTodo.value = ''
-    console.log(newToDo)
+    todos.push(newToDo)
+    saveTodo()
+    console.log(todos)
 }
 
 
@@ -61,6 +69,16 @@ function addTodo(newToDo){
     span.appendChild(button)
     button.innerHTML="x"
     toDoList.appendChild(li)
+}
+
+
+const getToDos = localStorage.getItem("todos");
+
+if (getToDos !== null) {
+  const parsedToDos = JSON.parse(getToDos);
+  todos = parsedToDos
+  parsedToDos.forEach((item) => addTodo(item));
+ 
 }
 
 loginForm.addEventListener("submit",saveInfo)
