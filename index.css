@@ -1,0 +1,58 @@
+.div{
+    box-sizing: border-box;
+}
+
+
+.none{
+    display: none;
+}
+
+.idpwForm{
+    display: flex;
+    justify-content: center;
+}
+
+.idpwForm span{
+    margin-bottom: 3px;
+
+}
+
+.idpwInput{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 30%;
+    
+}
+
+.idInput{
+    margin-bottom: 5px;
+}
+
+.pwInput{
+    margin-bottom: 10px;
+}
+
+.loginBtn{
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.loginBtn button{
+    border: none;
+    width: 100px;
+    height: 25px;
+    background-color: cyan;
+}
+
+.userInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todoBox{
+    text-align: center;
+    margin: 30px;
+}
