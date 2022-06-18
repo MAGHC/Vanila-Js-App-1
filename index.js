@@ -6,11 +6,13 @@ const body = document.querySelector('body')
 const loginForm = document.querySelector('.idpwForm')
 const loginBtn = document.querySelector('.loginBtn')
 const afterLogin = document.querySelector('.none')
+const nameSetHtml = document.querySelector('.nameSet')
 
 
 const userName = document.querySelector('.userNmae')
 const toDoList = document.querySelector('.todoList')
 const userInputTodo = document.querySelector('.userTodoInput')
+const toDoAllDeleteBtn = document.querySelector('.toDoAllDelete')
 
 
 const todoForm = document.querySelector('.todoForm')
@@ -40,6 +42,14 @@ function saveTodo(){
     localStorage.setItem('todos',JSON.stringify(todos))
 }
 
+function handleNameSetBtn(event){
+    event.preventDefault()
+    loginForm.classList ='idpwForm'
+    afterLogin.classList ='none'
+    localStorage.removeItem('id')
+    localStorage.removeItem('pw')
+
+}
 
 function handleSubmit(event){
     event.preventDefault()
@@ -48,7 +58,7 @@ function handleSubmit(event){
     userInputTodo.value = ''
     todos.push(newToDo)
     saveTodo()
-    console.log(todos)
+
 }
 
 
@@ -81,7 +91,24 @@ if (getToDos !== null) {
  
 }
 
+const getName = localStorage.getItem('id')
+
+if(getName !== null){
+    loginForm.classList ='none'
+    afterLogin.classList =''
+    userName.innerHTML = localStorage.getItem('id')
+}
+
+function allDeleteToDo(){
+    localStorage.removeItem('todos')
+}
+
+
+
 loginForm.addEventListener("submit",saveInfo)
 
 todoForm.addEventListener('submit', handleSubmit)
 
+nameSetHtml.addEventListener('click', handleNameSetBtn )
+
+toDoAllDeleteBtn.addEventListener('click',  allDeleteToDo)
