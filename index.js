@@ -18,6 +18,8 @@ const toDoAllDeleteBtn = document.querySelector('.toDoAllDelete')
 const allReset = document.querySelector('.allReset')
 
 
+let grabToDoList = document.querySelector('.grabToDoList')
+
 
 const todoForm = document.querySelector('.todoForm')
 
@@ -91,12 +93,12 @@ function addTodo(newToDo){
 
     button.addEventListener("click", deleteTodo )
 
-    li.appendChild(span)
-    li.id = newToDo.id
-    span.innerText = newToDo.text
-    span.appendChild(button)
-    button.innerHTML="x"
-    toDoList.appendChild(li)
+        li.appendChild(span)
+        li.id = newToDo.id
+        span.innerText = newToDo.text
+        span.appendChild(button)
+        button.innerHTML="x"
+        grabToDoList.appendChild(li)
 }
 
 
@@ -118,7 +120,17 @@ if(getName !== null){
 }
 
 function allDeleteToDo(){
+
     localStorage.removeItem('todos')
+    let listChildren = grabToDoList.children
+    for(let i =0; i < listChildren.length ; i++){
+        listChildren[i].parentNode.removeChild(listChildren[i])
+        i--
+      // i-- 를 해줘야 계속 갱신되는 length 값에 영향을 받지 않고 마지막까지 for를 돌리게됨 
+        
+  }
+
+    
 }
 
 
