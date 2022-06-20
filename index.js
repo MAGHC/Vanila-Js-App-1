@@ -37,11 +37,11 @@ function handleAllReset(event){
 function saveInfo(event)
 { event.preventDefault();
     const idInput = document.querySelector('.idInput')
-    const pwInput = document.querySelector('.pwInput')
+  
     const idValue = idInput.value
-    const pwValue = pwInput.value
+   
     localStorage.setItem('id', idValue )
-    localStorage.setItem('pw', pwValue)
+
     loginForm.classList ='none'
     afterLogin.classList =''
     userName.innerHTML = localStorage.getItem('id')    
@@ -59,7 +59,7 @@ function handleNameSetBtn(event){
     loginForm.classList ='idpwForm'
     afterLogin.classList ='none'
     localStorage.removeItem('id')
-    localStorage.removeItem('pw')
+
 
 }
 
@@ -144,3 +144,5 @@ nameSetHtml.addEventListener('click', handleNameSetBtn )
 toDoAllDeleteBtn.addEventListener('click',  allDeleteToDo)
 
 allReset.addEventListener('click', handleAllReset)
+
+todoForm.addEventListener('click', ()=>{userInputTodo.value=""})
