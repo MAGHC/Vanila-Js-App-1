@@ -15,11 +15,21 @@ const userInputTodo = document.querySelector('.userTodoInput')
 const toDoAllDeleteBtn = document.querySelector('.toDoAllDelete')
 
 
+const allReset = document.querySelector('.allReset')
+
+
+
 const todoForm = document.querySelector('.todoForm')
 
 setInterval(()=>{clockHtml.innerHTML = new Date()},1000)
 
 
+
+function handleAllReset(event){
+    event.preventDefault();
+    localStorage.clear()
+
+}
 
 
 function saveInfo(event)
@@ -54,9 +64,14 @@ function handleNameSetBtn(event){
 function handleSubmit(event){
     event.preventDefault()
     let newToDo = userInputTodo.value
-    addTodo(newToDo)
+    
     userInputTodo.value = ''
-    todos.push(newToDo)
+    const newToDoObj ={
+        id:Date.now(),
+        text:newToDo
+    }
+    addTodo(newToDoObj)
+    todos.push(newToDoObj)
     saveTodo()
 
 }
@@ -64,7 +79,9 @@ function handleSubmit(event){
 
 function deleteTodo(event){
  const li = event.target.parentElement.parentElement
+ todos = todos.filter(item=>item.id !== parseInt(li.id))
  li.remove()
+ saveTodo()
 }
 
 function addTodo(newToDo){
@@ -75,7 +92,8 @@ function addTodo(newToDo){
     button.addEventListener("click", deleteTodo )
 
     li.appendChild(span)
-    span.innerText = newToDo
+    li.id = newToDo.id
+    span.innerText = newToDo.text
     span.appendChild(button)
     button.innerHTML="x"
     toDoList.appendChild(li)
@@ -112,3 +130,5 @@ todoForm.addEventListener('submit', handleSubmit)
 nameSetHtml.addEventListener('click', handleNameSetBtn )
 
 toDoAllDeleteBtn.addEventListener('click',  allDeleteToDo)
+
+allReset.addEventListener('click', handleAllReset)
