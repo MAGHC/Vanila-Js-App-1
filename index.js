@@ -14,9 +14,11 @@ const toDoAllDeleteBtn = document.querySelector(".toDoAllDelete");
 
 const allReset = document.querySelector(".allReset");
 
-let grabToDoList = document.querySelector(".grabToDoList");
+const grabToDoList = document.querySelector(".grabToDoList");
 
 const todoForm = document.querySelector(".todoForm");
+
+const selectTodo = document.querySelector(".selectToDoDelete");
 
 setInterval(() => {
   clockHtml.innerHTML = new Date();
@@ -78,9 +80,12 @@ function addTodo(newToDo) {
   const li = document.createElement("li");
   const span = document.createElement("span");
   const button = document.createElement("button");
+  const input = document.createElement("input");
 
   button.addEventListener("click", deleteTodo);
 
+  input.type = "checkbox";
+  li.appendChild(input);
   li.appendChild(span);
   li.id = newToDo.id;
   span.innerText = newToDo.text;
@@ -117,6 +122,18 @@ function allDeleteToDo() {
   saveTodo(); // todos 를 초기화 해서 저장하지 않는다면 다시 요소들을 추가했을시에 지웠던 todos의 값을 참조해서 살아나는것을 확인 지웠다고 해도 init을 해줘야되는 이유 가 이거구나
 }
 
+function selectToDoDelete() {
+  const selectBox = document.querySelectorAll(".grabToDoList input");
+  selectBox.forEach((item) => {
+    if (item.checked === true) {
+      const li = item.parentElement;
+      li.remove();
+      todos = todos.filter((list) => list.id !== parseInt(li.id));
+      saveTodo();
+    }
+  });
+}
+
 loginForm.addEventListener("submit", saveInfo);
 
 todoForm.addEventListener("submit", handleSubmit);
@@ -130,3 +147,5 @@ allReset.addEventListener("click", handleAllReset);
 todoForm.addEventListener("click", () => {
   userInputTodo.value = "";
 });
+
+selectTodo.addEventListener("click", selectToDoDelete);

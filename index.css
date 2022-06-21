@@ -1,55 +1,54 @@
-.div{
-    box-sizing: border-box;
+div {
+  box-sizing: border-box;
 }
 
-
-.none{
-    display: none;
+li {
+  list-style: none;
 }
 
-.idpwForm{
-    display: flex;
-    justify-content: center;
+.none {
+  display: none;
 }
 
-.idpwForm span{
-    margin-bottom: 3px;
-
+.idpwForm {
+  display: flex;
+  justify-content: center;
 }
 
-.idpwInput{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 30%;
-    
+.idpwForm span {
+  margin-bottom: 3px;
 }
 
-.idInput{
-    margin-bottom: 5px;
+.idpwInput {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 30%;
 }
 
-
-.loginBtn{
-    display: flex;
-    justify-content: flex-end;
-    
+.idInput {
+  margin-bottom: 5px;
 }
 
-.loginBtn button{
-    border: none;
-    width: 100px;
-    height: 25px;
-    background-color: cyan;
+.loginBtn {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.userInfo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.loginBtn button {
+  border: none;
+  width: 100px;
+  height: 25px;
+  background-color: cyan;
 }
 
-.todoBox{
-    text-align: center;
-    margin: 30px;
+.userInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todoBox {
+  text-align: center;
+  margin: 30px;
 }
