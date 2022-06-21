@@ -89,6 +89,7 @@ function addTodo(newToDo) {
   li.appendChild(span);
   li.id = newToDo.id;
   span.innerText = newToDo.text;
+  button.className = "xButton";
   span.appendChild(button);
   button.innerHTML = "x";
   grabToDoList.appendChild(li);
