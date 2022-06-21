@@ -56,3 +56,7 @@ li {
 .xButton {
   margin-left: 20px;
 }
+
+.success {
+  text-decoration: line-through;
+}

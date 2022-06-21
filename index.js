@@ -57,16 +57,21 @@ function handleNameSetBtn(event) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  let newToDo = userInputTodo.value;
 
-  userInputTodo.value = "";
-  const newToDoObj = {
-    id: Date.now(),
-    text: newToDo,
-  };
-  addTodo(newToDoObj);
-  todos.push(newToDoObj);
-  saveTodo();
+  if (userInputTodo.value === "") {
+    alert("입력창이 비어있습니다");
+  } else {
+    let newToDo = userInputTodo.value;
+
+    userInputTodo.value = "";
+    const newToDoObj = {
+      id: Date.now(),
+      text: newToDo,
+    };
+    addTodo(newToDoObj);
+    todos.push(newToDoObj);
+    saveTodo();
+  }
 }
 
 function deleteTodo(event) {
@@ -85,6 +90,7 @@ function addTodo(newToDo) {
   button.addEventListener("click", deleteTodo);
 
   input.type = "checkbox";
+
   li.appendChild(input);
   li.appendChild(span);
   li.id = newToDo.id;
@@ -93,6 +99,14 @@ function addTodo(newToDo) {
   span.appendChild(button);
   button.innerHTML = "x";
   grabToDoList.appendChild(li);
+
+  input.addEventListener("click", () => {
+    if (span.className === "") {
+      span.className = "success";
+    } else if (span.className === "success") {
+      span.className = "";
+    }
+  });
 }
 
 const getToDos = localStorage.getItem("todos");
