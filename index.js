@@ -1,148 +1,132 @@
-
-const clockHtml = document.querySelector('.watch')
-const body = document.querySelector('body')
+const clockHtml = document.querySelector(".watch");
+const body = document.querySelector("body");
 
 //로그인
-const loginForm = document.querySelector('.idpwForm')
-const loginBtn = document.querySelector('.loginBtn')
-const afterLogin = document.querySelector('.none')
-const nameSetHtml = document.querySelector('.nameSet')
+const loginForm = document.querySelector(".idpwForm");
+const loginBtn = document.querySelector(".loginBtn");
+const afterLogin = document.querySelector(".none");
+const nameSetHtml = document.querySelector(".nameSet");
 
+const userName = document.querySelector(".userNmae");
+const toDoList = document.querySelector(".todoList");
+const userInputTodo = document.querySelector(".userTodoInput");
+const toDoAllDeleteBtn = document.querySelector(".toDoAllDelete");
 
-const userName = document.querySelector('.userNmae')
-const toDoList = document.querySelector('.todoList')
-const userInputTodo = document.querySelector('.userTodoInput')
-const toDoAllDeleteBtn = document.querySelector('.toDoAllDelete')
+const allReset = document.querySelector(".allReset");
 
+let grabToDoList = document.querySelector(".grabToDoList");
 
-const allReset = document.querySelector('.allReset')
+const todoForm = document.querySelector(".todoForm");
 
+setInterval(() => {
+  clockHtml.innerHTML = new Date();
+}, 1000);
 
-let grabToDoList = document.querySelector('.grabToDoList')
-
-
-const todoForm = document.querySelector('.todoForm')
-
-setInterval(()=>{clockHtml.innerHTML = new Date()},1000)
-
-
-
-function handleAllReset(event){
-    event.preventDefault();
-    localStorage.clear()
-
+function handleAllReset(event) {
+  event.preventDefault();
+  localStorage.clear();
 }
 
+function saveInfo(event) {
+  event.preventDefault();
+  const idInput = document.querySelector(".idInput");
 
-function saveInfo(event)
-{ event.preventDefault();
-    const idInput = document.querySelector('.idInput')
-  
-    const idValue = idInput.value
-   
-    localStorage.setItem('id', idValue )
+  const idValue = idInput.value;
 
-    loginForm.classList ='none'
-    afterLogin.classList =''
-    userName.innerHTML = localStorage.getItem('id')    
-    
+  localStorage.setItem("id", idValue);
+
+  loginForm.classList = "none";
+  afterLogin.classList = "";
+  userName.innerHTML = localStorage.getItem("id");
 }
 
-let todos =[]
+let todos = [];
 
-function saveTodo(){
-    localStorage.setItem('todos',JSON.stringify(todos))
+function saveTodo() {
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
 
-function handleNameSetBtn(event){
-    event.preventDefault()
-    loginForm.classList ='idpwForm'
-    afterLogin.classList ='none'
-    localStorage.removeItem('id')
-
-
+function handleNameSetBtn(event) {
+  event.preventDefault();
+  loginForm.classList = "idpwForm";
+  afterLogin.classList = "none";
+  localStorage.removeItem("id");
 }
 
-function handleSubmit(event){
-    event.preventDefault()
-    let newToDo = userInputTodo.value
-    
-    userInputTodo.value = ''
-    const newToDoObj ={
-        id:Date.now(),
-        text:newToDo
-    }
-    addTodo(newToDoObj)
-    todos.push(newToDoObj)
-    saveTodo()
+function handleSubmit(event) {
+  event.preventDefault();
+  let newToDo = userInputTodo.value;
 
+  userInputTodo.value = "";
+  const newToDoObj = {
+    id: Date.now(),
+    text: newToDo,
+  };
+  addTodo(newToDoObj);
+  todos.push(newToDoObj);
+  saveTodo();
 }
 
-
-function deleteTodo(event){
- const li = event.target.parentElement.parentElement
- todos = todos.filter(item=>item.id !== parseInt(li.id))
- li.remove()
- saveTodo()
+function deleteTodo(event) {
+  const li = event.target.parentElement.parentElement;
+  todos = todos.filter((item) => item.id !== parseInt(li.id));
+  li.remove();
+  saveTodo();
 }
 
-function addTodo(newToDo){
-    const li = document.createElement('li')
-    const span =document.createElement('span')
-    const button = document.createElement('button')
+function addTodo(newToDo) {
+  const li = document.createElement("li");
+  const span = document.createElement("span");
+  const button = document.createElement("button");
 
-    button.addEventListener("click", deleteTodo )
+  button.addEventListener("click", deleteTodo);
 
-        li.appendChild(span)
-        li.id = newToDo.id
-        span.innerText = newToDo.text
-        span.appendChild(button)
-        button.innerHTML="x"
-        grabToDoList.appendChild(li)
+  li.appendChild(span);
+  li.id = newToDo.id;
+  span.innerText = newToDo.text;
+  span.appendChild(button);
+  button.innerHTML = "x";
+  grabToDoList.appendChild(li);
 }
-
 
 const getToDos = localStorage.getItem("todos");
 
 if (getToDos !== null) {
   const parsedToDos = JSON.parse(getToDos);
-  todos = parsedToDos
+  todos = parsedToDos;
   parsedToDos.forEach((item) => addTodo(item));
- 
 }
 
-const getName = localStorage.getItem('id')
+const getName = localStorage.getItem("id");
 
-if(getName !== null){
-    loginForm.classList ='none'
-    afterLogin.classList =''
-    userName.innerHTML = localStorage.getItem('id')
+if (getName !== null) {
+  loginForm.classList = "none";
+  afterLogin.classList = "";
+  userName.innerHTML = localStorage.getItem("id");
 }
 
-function allDeleteToDo(){
-
-    localStorage.removeItem('todos')
-    let listChildren = grabToDoList.children
-    for(let i =0; i < listChildren.length ; i++){
-        listChildren[i].parentNode.removeChild(listChildren[i])
-        i--
-      // i-- 를 해줘야 계속 갱신되는 length 값에 영향을 받지 않고 마지막까지 for를 돌리게됨 
-        
+function allDeleteToDo() {
+  localStorage.removeItem("todos");
+  let listChildren = grabToDoList.children;
+  for (let i = 0; i < listChildren.length; i++) {
+    listChildren[i].remove(listChildren[i]);
+    i--;
+    // i-- 를 해줘야 계속 갱신되는 length 값에 영향을 받지 않고 마지막까지 for를 돌리게됨
   }
-
-    
+  todos = [];
+  saveTodo(); // todos 를 초기화 해서 저장하지 않는다면 다시 요소들을 추가했을시에 지웠던 todos의 값을 참조해서 살아나는것을 확인 지웠다고 해도 init을 해줘야되는 이유 가 이거구나
 }
 
+loginForm.addEventListener("submit", saveInfo);
 
+todoForm.addEventListener("submit", handleSubmit);
 
-loginForm.addEventListener("submit",saveInfo)
+nameSetHtml.addEventListener("click", handleNameSetBtn);
 
-todoForm.addEventListener('submit', handleSubmit)
+toDoAllDeleteBtn.addEventListener("click", allDeleteToDo);
 
-nameSetHtml.addEventListener('click', handleNameSetBtn )
+allReset.addEventListener("click", handleAllReset);
 
-toDoAllDeleteBtn.addEventListener('click',  allDeleteToDo)
-
-allReset.addEventListener('click', handleAllReset)
-
-todoForm.addEventListener('click', ()=>{userInputTodo.value=""})
+todoForm.addEventListener("click", () => {
+  userInputTodo.value = "";
+});
