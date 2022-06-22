@@ -20,4 +20,9 @@ setInterval 현재 시간
 
 전체 삭제
 
-완료시 줄긋기
+완료시 줄긋기 class name 유지 
+
+checkd 유지 
+
+총 갯수 / 완료 갯수 
+
