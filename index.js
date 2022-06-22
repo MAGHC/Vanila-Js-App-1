@@ -6,9 +6,10 @@ const loginForm = document.querySelector(".idpwForm");
 const loginBtn = document.querySelector(".loginBtn");
 const afterLogin = document.querySelector(".none");
 const nameSetHtml = document.querySelector(".nameSet");
-
 const userName = document.querySelector(".userNmae");
+
 const toDoList = document.querySelector(".todoList");
+
 const userInputTodo = document.querySelector(".userTodoInput");
 const toDoAllDeleteBtn = document.querySelector(".toDoAllDelete");
 
@@ -19,6 +20,8 @@ const grabToDoList = document.querySelector(".grabToDoList");
 const todoForm = document.querySelector(".todoForm");
 
 const selectTodo = document.querySelector(".selectToDoDelete");
+
+const MemoLength = document.querySelector(".sum");
 
 setInterval(() => {
   clockHtml.innerHTML = new Date();
@@ -150,6 +153,12 @@ function selectToDoDelete() {
     }
   });
 }
+
+setInterval(() => {
+  let count = 0;
+  todos.forEach((item) => (item.checked === true ? count++ : ""));
+  if (todos.length !== 0) MemoLength.innerHTML = `총 메모 ${todos.length}개 완료 ${count}개`;
+}, 1000);
 
 loginForm.addEventListener("submit", saveInfo);
 
