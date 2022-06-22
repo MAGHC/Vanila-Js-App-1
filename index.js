@@ -27,6 +27,7 @@ setInterval(() => {
 function handleAllReset(event) {
   event.preventDefault();
   localStorage.clear();
+  location.reload();
 }
 
 function saveInfo(event) {
@@ -67,6 +68,7 @@ function handleSubmit(event) {
     const newToDoObj = {
       id: Date.now(),
       text: newToDo,
+      checked: false,
     };
     addTodo(newToDoObj);
     todos.push(newToDoObj);
@@ -90,6 +92,7 @@ function addTodo(newToDo) {
   button.addEventListener("click", deleteTodo);
 
   input.type = "checkbox";
+  input.checked = newToDo.checked;
 
   li.appendChild(input);
   li.appendChild(span);
@@ -99,13 +102,10 @@ function addTodo(newToDo) {
   span.appendChild(button);
   button.innerHTML = "x";
   grabToDoList.appendChild(li);
+  input.checked === true ? (span.className = "success") : (span.className = "");
 
   input.addEventListener("click", () => {
-    if (span.className === "") {
-      span.className = "success";
-    } else if (span.className === "success") {
-      span.className = "";
-    }
+    input.checked === true ? (span.className = "success") : (span.className = "");
   });
 }
 
