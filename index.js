@@ -162,7 +162,7 @@ setInterval(() => {
   } else {
     MemoLength.innerHTML = "";
   }
-}, 1000);
+}, 100);
 
 loginForm.addEventListener("submit", saveInfo);
 
@@ -179,3 +179,5 @@ todoForm.addEventListener("click", () => {
 });
 
 selectTodo.addEventListener("click", selectToDoDelete);
+
+// setInterval 값 수정  / obj에 날짜 추가할생각인데 여기서부터 obj에 이거저거 넣고 저장하고 하는건 이미 다아는데 추가하는게 의미가있나싶기도하고
