@@ -106,6 +106,8 @@ function addTodo(newToDo) {
 
   input.addEventListener("click", () => {
     input.checked === true ? (span.className = "success") : (span.className = "");
+    newToDo.checked = input.checked;
+    saveTodo();
   });
 }
 
