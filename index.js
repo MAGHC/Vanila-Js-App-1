@@ -157,7 +157,11 @@ function selectToDoDelete() {
 setInterval(() => {
   let count = 0;
   todos.forEach((item) => (item.checked === true ? count++ : ""));
-  if (todos.length !== 0) MemoLength.innerHTML = `총 메모 ${todos.length}개 완료 ${count}개`;
+  if (todos.length !== 0) {
+    MemoLength.innerHTML = `총 메모 ${todos.length}개 완료 ${count}개`;
+  } else {
+    MemoLength.innerHTML = "";
+  }
 }, 1000);
 
 loginForm.addEventListener("submit", saveInfo);
