@@ -23,6 +23,13 @@ const selectTodo = document.querySelector(".selectToDoDelete");
 
 const MemoLength = document.querySelector(".sum");
 
+const searchResult = document.querySelector(".result");
+
+//검색
+
+const search = document.querySelector(".search");
+const userSearch = document.querySelector(".userSearch");
+
 setInterval(() => {
   clockHtml.innerHTML = new Date();
 }, 1000);
@@ -164,6 +171,20 @@ setInterval(() => {
   }
 }, 100);
 
+function searchItem(e) {
+  e.preventDefault();
+  const SearchValue = userSearch.value;
+  console.log(SearchValue);
+  const result = JSON.stringify(
+    todos.filter(function (item) {
+      if (item.text === SearchValue) {
+        return item;
+      }
+    })
+  );
+  searchResult.innerHTML = result;
+}
+
 loginForm.addEventListener("submit", saveInfo);
 
 todoForm.addEventListener("submit", handleSubmit);
@@ -179,5 +200,7 @@ todoForm.addEventListener("click", () => {
 });
 
 selectTodo.addEventListener("click", selectToDoDelete);
+
+search.addEventListener("click", searchItem);
 
 // setInterval 값 수정  / obj에 날짜 추가할생각인데 여기서부터 obj에 이거저거 넣고 저장하고 하는건 이미 다아는데 추가하는게 의미가있나싶기도하고
