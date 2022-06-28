@@ -176,11 +176,14 @@ function searchItem(e) {
   const SearchValue = userSearch.value;
   console.log(SearchValue);
   const result = JSON.stringify(
-    todos.filter(function (item) {
-      if (item.text === SearchValue) {
-        return item;
-      }
-    })
+    todos
+      .filter(function (item) {
+        if (item.text === SearchValue) {
+          return item;
+        }
+      })
+      .map((item, index) => `해당하는 ${index + 1} 번째 메모 ${item.text} `)
+      .join()
   );
   searchResult.innerHTML = result;
 }
