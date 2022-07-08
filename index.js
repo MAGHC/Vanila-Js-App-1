@@ -165,7 +165,7 @@ setInterval(() => {
   let count = 0;
   todos.forEach((item) => (item.checked === true ? count++ : ""));
   if (todos.length !== 0) {
-    MemoLength.innerHTML = `총 메모 ${todos.length}개 완료 ${count}개`;
+    MemoLength.innerHTML = `총 메모 ${todos.length}개 완료 ${count}개  100% 중 ${Math.ceil((count / todos.length) * 100)}% 완료`;
   } else {
     MemoLength.innerHTML = "";
   }
@@ -178,11 +178,9 @@ function searchItem(e) {
   const result = JSON.stringify(
     todos
       .filter(function (item) {
-        if (item.text === SearchValue) {
-          return item;
-        }
+        return item.text.includes(SearchValue);
       })
-      .map((item, index) => `해당하는 ${index + 1} 번째 메모 ${item.text} `)
+      .map((item, index) => `검색결과 ${index + 1} 번째 메모 ${item.text} `)
       .join()
   );
   searchResult.innerHTML = result;
