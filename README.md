@@ -24,7 +24,7 @@ setInterval 현재 시간
 
 checkd 유지 
 
-총 갯수 / 완료 갯수 / 백분열 
+총 갯수 / 완료 갯수 / => 백분율 
 
 검색기능 filter  / include 로 속한 단어 있으면 검색되게 변경 
 
