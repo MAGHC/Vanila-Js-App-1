@@ -2,6 +2,9 @@ const clockHtml = document.querySelector(".watch");
 const body = document.querySelector("body");
 
 //로그인
+
+const showPercent = document.querySelector(".show__now");
+
 const loginForm = document.querySelector(".idpwForm");
 const loginBtn = document.querySelector(".loginBtn");
 const afterLogin = document.querySelector(".none");
@@ -160,14 +163,17 @@ function selectToDoDelete() {
     }
   });
 }
+console.log(showPercent);
 
 setInterval(() => {
   let count = 0;
   todos.forEach((item) => (item.checked === true ? count++ : ""));
   if (todos.length !== 0) {
-    MemoLength.innerHTML = `총 메모 ${todos.length}개 완료 ${count}개  100% 중 ${Math.ceil((count / todos.length) * 100)}% 완료`;
+    MemoLength.innerText = `총 메모 ${todos.length}개 완료 ${count}개  `;
+    showPercent.innerText = `${Math.ceil((count / todos.length) * 100)}% `;
+    showPercent.style.width = `${Math.ceil((count / todos.length) * 100)}% `;
   } else {
-    MemoLength.innerHTML = "";
+    MemoLength.innerText = "";
   }
 }, 100);
 
