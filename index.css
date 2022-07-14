@@ -1,3 +1,7 @@
+html {
+  font-size: 66%;
+}
+
 div {
   box-sizing: border-box;
 }
@@ -23,7 +27,7 @@ li {
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: 30%;
+  width: 3rem;
 }
 
 .idInput {
@@ -37,8 +41,8 @@ li {
 
 .loginBtn button {
   border: none;
-  width: 100px;
-  height: 25px;
+  width: 10rem;
+  height: 2.5rem;
   background-color: cyan;
 }
 
@@ -50,11 +54,11 @@ li {
 
 .todoBox {
   text-align: center;
-  margin: 30px;
+  margin: 3rem;
 }
 
 .xButton {
-  margin-left: 20px;
+  margin-left: 2rem;
 }
 
 .success {
@@ -65,6 +69,7 @@ body {
   background-image: url("https://images.unsplash.com/photo-1614332625575-6bef549fcc7b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWVtb3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60  ");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .show__parent {
@@ -73,13 +78,13 @@ body {
 }
 
 .show__percent {
-  width: 40%;
-  height: 20px;
+  width: 4rem;
+  height: 2rem;
   background-color: white;
 }
 
 .show__now {
-  width: 10%;
+  width: 1rem
   color: gray;
   background-color: black;
 }
