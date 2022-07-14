@@ -84,7 +84,7 @@ body {
 }
 
 .show__now {
-  width: 1rem
+  width: 1rem;
   color: gray;
   background-color: black;
 }
