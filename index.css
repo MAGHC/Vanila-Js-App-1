@@ -79,12 +79,13 @@ body {
 
 .show__percent {
   width: 4rem;
-  height: 2rem;
+  height: 1.5rem;
   background-color: white;
 }
 
 .show__now {
   width: 1rem;
+  height: 100%;
   color: gray;
   background-color: black;
 }
